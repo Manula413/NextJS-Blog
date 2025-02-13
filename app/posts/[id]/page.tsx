@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 
+
 // Fetch the data for a post by its ID
 async function getPost(id: number) {
   const res = await fetch("http://localhost:3000/api/posts");
@@ -25,9 +26,14 @@ export default async function PostPage(props: { params: Promise<{ id: string }> 
   if (!post) return notFound(); // Show a 404 page if post doesn't exist
 
   return (
-    <section>
-      <h2>{post.title}</h2>
-      <p>{post.content}</p>
+    <section className="min-h-screen bg-gray-100 p-6">
+      <div className="max-w-3xl mx-auto bg-white p-6 rounded-md shadow-md">
+      <h2 className="text-3xl font-semibold text-gray-800 mb-4">{post.title}</h2></div>
+      <p className="text-lg text-gray-700">{post.content}</p>
+    
+
     </section>
+
+    
   );
 }
