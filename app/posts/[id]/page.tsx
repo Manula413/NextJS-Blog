@@ -1,22 +1,22 @@
 import { notFound } from "next/navigation";
 import { connectToDatabase } from "../../../lib/mongodb";
-import { ObjectId } from "mongodb"; // Import ObjectId for MongoDB
+import { ObjectId } from "mongodb"; 
 
-// Fetch a single post by ID
+
 async function getPost(id: string) {
   try {
     const db = await connectToDatabase();
     const collection = db.collection("posts");
-    // Use ObjectId to find the post by its MongoDB _id
+
     const post = await collection.findOne({ _id: new ObjectId(id) });
     return post;
   } catch (error) {
-    console.error("Error fetching post:", error);
+  
     return null;
   }
 }
 
-// Generate metadata for the page (used for SEO and title)
+
 export async function generateMetadata(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
   const post = await getPost(params.id);
@@ -26,19 +26,18 @@ export async function generateMetadata(props: { params: Promise<{ id: string }> 
   return { title: post.title };
 }
 
-// Function to split content into paragraphs
 function formatContent(content: string) {
   return content.split("\n").map((line, index) => (
     <p key={index} className="text-lg text-gray-700 mb-4">{line}</p>
   ));
 }
 
-// PostPage component to display individual post
+
 export default async function PostPage(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
   const post = await getPost(params.id);
 
-  if (!post) return notFound(); // Return 404 if post is not found
+  if (!post) return notFound(); 
 
   return (
     <section className="min-h-screen bg-gray-50 py-16 px-6 sm:px-12">
