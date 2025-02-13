@@ -25,7 +25,6 @@ export async function generateMetadata(props: { params: Promise<{ id: string }> 
 
   return { title: post.title };
 }
-
 function formatContent(content: string) {
   return content.split("\n").map((line, index) => (
     <p key={index} className="text-lg text-gray-700 mb-4">{line}</p>
