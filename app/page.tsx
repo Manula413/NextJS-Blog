@@ -30,11 +30,14 @@ export default function Home() {
   if (isLoading) {
     return (
       <main className="min-h-screen bg-gray-50 p-6 flex justify-center items-center">
-        <div className="text-lg text-gray-800 mr-4">Loading posts...</div>
-        <div className="border-t-4 border-gray-600 border-solid w-12 h-12 rounded-full animate-spin"></div>
+        <div className="flex flex-col justify-center items-center">
+          <div className="border-t-4 border-gray-600 border-solid w-12 h-12 rounded-full animate-spin mb-4"></div>
+          <div className="text-lg text-gray-800">Loading posts...</div>
+        </div>
       </main>
     );
   }
+  
 
   if (error) {
     return (
